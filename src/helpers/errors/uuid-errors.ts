@@ -8,7 +8,7 @@ export class uuidErrors extends baseErrors
 {
     static ensureGenerator(uuid: _UUID) 
     {
-        if(uuidGenerator() == null) return this.throwGenerationFailed("UUID")
+        if(!uuidGenerator()) return this.throwGenerationFailed("UUID")
     }
 
     static ensureValidator(uuid: _UUID) 
