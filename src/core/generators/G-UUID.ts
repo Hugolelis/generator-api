@@ -1,4 +1,5 @@
 import { _UUID } from '../../helpers/types/T-UUID'
+import crypto from 'crypto';
 
 export function uuidGenerator(): _UUID 
 {
