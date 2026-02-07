@@ -55,3 +55,38 @@ The project organization is designed for a clear separation of concerns:
 ├── package.json          # Project manifest and scripts
 ├── prisma.config.ts      # Prisma specific configurations
 └── tsconfig.json         # TypeScript compiler configurations
+```
+
+---
+
+## ⚙️ Running the Project
+
+#### 1. Clone the Repository
+
+```bash
+git clone https://github.com/Hugolelis/GeneratorAPI.git
+cd GeneratorAPI
+```
+
+#### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+#### 3. Configure Environment Variables (.env) (example)
+
+```bash
+PORT=3000
+HOST=0.0.0.0
+
+DATABASE_URL=""
+```
+
+#### 4. Start the Server
+
+```bash
+npm run dev
+// or
+npm start
+```
