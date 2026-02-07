@@ -59,7 +59,7 @@ The project organization is designed for a clear separation of concerns:
 
 ---
 
-## ⚙️ Running the Project
+## ⚙️ Running
 
 #### 1. Clone the Repository
 
