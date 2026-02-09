@@ -95,5 +95,3 @@ npm start
 ## 📄 License
 
 This project is licensed under the **MIT License**. You can use, copy, and modify it as long as you include the original license and copyright notice.
-
-See the [LICENSE](LICENSE) file for more details.
