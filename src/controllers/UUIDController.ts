@@ -1,7 +1,7 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
 
-import { uuidGenerator } from '../core/generators/G-UUID';
-import { validatorUUID } from '../core/validators/V-UUID';
+import { uuidGenerator } from '../core/generators/UUID';
+import { validatorUUID } from '../core/validators/UUID';
 
 import { uuidErrors } from '../helpers/errors/uuid-errors';
 import { writeLogs } from '../helpers/utils/write_logs';

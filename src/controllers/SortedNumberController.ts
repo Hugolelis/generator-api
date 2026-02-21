@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
 
-import { sortedNumberGenerator } from '../core/generators/G-SortedNumber';
+import { sortedNumberGenerator } from '../core/generators/SortedNumber';
 
 import { sortedNumberErrors } from '../helpers/errors/sortedNumber-errors';
 import { writeLogs } from '../helpers/utils/write_logs';

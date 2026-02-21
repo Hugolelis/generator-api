@@ -1,6 +1,6 @@
 import { baseErrors } from "./base-errors";
 
-import { sortedNumberGenerator } from "../../core/generators/G-SortedNumber";
+import { sortedNumberGenerator } from "../../core/generators/SortedNumber";
 
 export class sortedNumberErrors extends baseErrors 
 {
