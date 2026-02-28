@@ -1,11 +1,11 @@
-import pino from 'pino';
+import pino, { Level } from 'pino';
 import { fileURLToPath } from 'url';
 import path from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export class writeLogs 
+export class Logs 
 {
     private static createLogger(filename: string) 
     {
@@ -20,15 +20,12 @@ export class writeLogs
         );
     }
 
-    static uuid(data: object, message: string)
+    static write(data: object, message: string, type: Level)
     {
-        const logger = this.createLogger('uuid');
-        logger.info(data, message);
-    }
+        const keys = Object.keys(data);
+        const logFilename = keys.length > 0 ? keys[0] : 'default';
 
-    static sortedNumber(data: object, message: string) 
-    {
-        const logger = this.createLogger('sortedNumber');
-        logger.info(data, message);
+        const logger = this.createLogger(logFilename);
+        logger[type](data, message);
     }
 }
