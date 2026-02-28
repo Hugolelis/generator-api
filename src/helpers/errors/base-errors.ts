@@ -1,4 +1,4 @@
-export class baseErrors extends Error 
+export class BaseErrors extends Error 
 {
     public statusCode: number;
 
@@ -11,11 +11,11 @@ export class baseErrors extends Error
 
     static throwGenerationFailed(generator: any)
     {
-        throw new baseErrors(`Falha interna ao gerar ${generator}.`, 404);
+        throw new BaseErrors(`Falha interna ao gerar ${generator}.`, 404);
     }
     
     static throwMissing(field: string) 
     {
-        throw new baseErrors(`O campo ${field} é obrigatório e não foi fornecido.`, 400);
+        throw new BaseErrors(`O campo ${field} é obrigatório e não foi fornecido.`, 400);
     }
 }

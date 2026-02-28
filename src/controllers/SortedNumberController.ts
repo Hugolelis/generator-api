@@ -2,7 +2,7 @@ import { FastifyRequest, FastifyReply } from 'fastify';
 
 import { sortedNumberGenerator } from '../core/generators/SortedNumber';
 
-import { sortedNumberErrors } from '../helpers/errors/sortedNumber-errors';
+import { SortedNumberErrors } from '../helpers/errors/sortedNumber-errors';
 import { Logs } from '../helpers/utils/write_logs';
 
 import { _sortedNumberRequest } from '../helpers/interfaces/I-SortedNumber';
@@ -13,7 +13,7 @@ export class SortedNumberController
     {
         const { min=1, max, qtd=1} = req.body as _sortedNumberRequest;
 
-        sortedNumberErrors.ensureGenerator(min, max, qtd)
+        SortedNumberErrors.ensureGenerator(min, max, qtd)
         const sorted = sortedNumberGenerator(min, max, qtd)
 
         Logs.write({ sortedNumber: sorted }, `número(s) gerado(s) com sucesso.`, "info")
