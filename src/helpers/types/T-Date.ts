@@ -1,1 +1,1 @@
-export type _date = Date | Date[]
+export type _date = Date | Date[] | string | string[];

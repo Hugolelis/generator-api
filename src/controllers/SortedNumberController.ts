@@ -11,7 +11,7 @@ export class SortedNumberController
 {
     static generate(req: FastifyRequest, reply: FastifyReply) 
     {
-        const { min=1, max, qtd=1} = req.body as _sortedNumberRequest;
+        const { min=1, max=1, qtd=1} = req.body as _sortedNumberRequest;
 
         SortedNumberErrors.ensureGenerator(min, max, qtd)
         const sorted = sortedNumberGenerator(min, max, qtd)

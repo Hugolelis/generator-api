@@ -1,9 +1,14 @@
 import { _date } from "../../helpers/types/T-Date";
 
-export function generateDate(start: Date, end: Date, day: number, qtd: number): _date {
-    const results: Date[] = [];
-    const startTime = start.getTime();
-    const endTime = end.getTime();
+export function generateDate(start: Date, end: Date, day: number | null, qtd: number): _date {
+    const results: string[] = [];
+
+    // Transforma input em Date
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+    
+    const startTime = startDate.getTime();
+    const endTime = endDate.getTime();
 
     while (results.length < qtd) {
         // Gera um timestamp aleatório no intervalo
@@ -11,9 +16,20 @@ export function generateDate(start: Date, end: Date, day: number, qtd: number): 
         const date = new Date(randomTime);
 
         // Calcula quanto falta para chegar no dia da semana escolhido (0-6)
-        const diff = (day - date.getDay() + 7) % 7;
-        date.setDate(date.getDate() + diff);
+        if(day != undefined) 
+        {
+            const diff = (day - date.getDay() + 7) % 7;
+            date.setDate(date.getDate() + diff);
+        } 
+
+        // Formata data corretamente
+        const formatedDate = date.toISOString().split('T')[0]
+        
+        if(!results.includes(formatedDate)) results.push(formatedDate);
     }
+
+    // Organiza em ordem cronológica
+    results.sort();
 
     return qtd === 1 ? results[0] : results;
 }
