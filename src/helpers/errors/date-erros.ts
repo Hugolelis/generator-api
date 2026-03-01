@@ -21,6 +21,7 @@ export class DateErrors extends BaseErrors
         if(generateDate(start, end, day, qtd) == null) BaseErrors.throwGenerationFailed("Data(s) sorteada(s)")
     }
 
+    // auxiliares
     static countDaysInRange(start: Date, end: Date, day: number | null): number 
     {
         const s = new Date(start);
