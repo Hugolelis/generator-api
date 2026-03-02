@@ -24,4 +24,7 @@ import { sortedNumberRoutes } from "./routes/sortedNumberRoutes";
 app.register(sortedNumberRoutes, { prefix: 'api/sortedNumber/'})
 
 import { dateRoutes } from "./routes/dateRoutes";
-app.register(dateRoutes, { prefix: 'api/date/'})
+app.register(dateRoutes, { prefix: 'api/date/' })
+
+import { cpfRoutes } from "./routes/cpfRoutes";
+app.register(cpfRoutes, { prefix: 'api/CPF/' })

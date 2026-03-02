@@ -2,7 +2,7 @@ import { FastifyRequest, FastifyReply } from 'fastify';
 
 import { generateDate } from '../core/generators/Date';
 
-import { DateErrors } from '../helpers/errors/date-erros';
+import { DateErrors } from '../helpers/errors/date-errors';
 import { Logs } from '../helpers/utils/write_logs';
 
 import { _dateRequest } from '../helpers/interfaces/I-Date';
