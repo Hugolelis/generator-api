@@ -28,3 +28,6 @@ app.register(dateRoutes, { prefix: 'api/date/' })
 
 import { cpfRoutes } from "./routes/cpfRoutes";
 app.register(cpfRoutes, { prefix: 'api/CPF/' })
+
+import { passwordRoutes } from "./routes/passwordRoutes";
+app.register(passwordRoutes, { prefix: 'api/password/' })
