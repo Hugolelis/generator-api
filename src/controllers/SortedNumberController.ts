@@ -15,7 +15,6 @@ export class SortedNumberController
 
         SortedNumberErrors.ensureGenerator(min, max, qtd)
         const sorted = sortedNumberGenerator(min, max, qtd)
-
         Logs.write({ sortedNumber: sorted }, `número(s) gerado(s) com sucesso.`, "info")
 
         reply.send({ "sorted": sorted, "qtd": qtd })

@@ -1,6 +1,6 @@
 import { BaseErrors } from "./base-errors";
 
-import { generateDate } from "../../core/generators/Date";
+import { dateGenerator } from "../../core/generators/Date";
 
 import { countDaysInRange } from "../utils/count_days_Range";
 
@@ -8,8 +8,8 @@ export class DateErrors extends BaseErrors
 {
     static ensureGenerator(start: Date, end: Date, day: number | null, qtd: number) 
     {
-        if(!start) BaseErrors.throwMissing("start")
-        if(!end) BaseErrors.throwMissing("end")
+        if(!start) this.throwMissing("start")
+        if(!end) this.throwMissing("end")
 
         if(start >= end) throw new BaseErrors(`A data de início (start) não pode ser maior ou igual que a data de fim (end).`, 400);
 
@@ -20,6 +20,6 @@ export class DateErrors extends BaseErrors
             );
         }
 
-        if(generateDate(start, end, day, qtd) == null) BaseErrors.throwGenerationFailed("Data(s) sorteada(s)")
+        if(dateGenerator(start, end, day, qtd) == null) this.throwGenerationFailed("Data(s)")
     }
 }

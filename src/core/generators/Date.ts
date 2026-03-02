@@ -1,6 +1,6 @@
 import { _date } from "../../helpers/types/T-Date";
 
-export function generateDate(start: Date, end: Date, day: number | null, qtd: number): _date {
+export function dateGenerator(start: Date, end: Date, day: number | null, qtd: number): _date {
     const results: string[] = [];
 
     // Transforma input em Date

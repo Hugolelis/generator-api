@@ -9,7 +9,7 @@ export class BaseErrors extends Error
         this.statusCode = statusCode;
     }
 
-    static throwGenerationFailed(generator: any)
+    static throwGenerationFailed(generator: string)
     {
         throw new BaseErrors(`Falha interna ao gerar ${generator}.`, 404);
     }

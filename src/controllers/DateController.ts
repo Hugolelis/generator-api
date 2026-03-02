@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
 
-import { generateDate } from '../core/generators/Date';
+import { dateGenerator } from '../core/generators/Date';
 
 import { DateErrors } from '../helpers/errors/date-errors';
 import { Logs } from '../helpers/utils/write_logs';
@@ -14,8 +14,7 @@ export class DateController
         const { start, end, day, qtd = 1} = req.body as _dateRequest;
         
         DateErrors.ensureGenerator(start, end, day, qtd)
-        const date = generateDate(start, end, day, qtd)
-
+        const date = dateGenerator(start, end, day, qtd)
         Logs.write({date: date}, "Data(s) gerada(s) com sucesso.", "info")
 
         reply.send({ date: date})

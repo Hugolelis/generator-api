@@ -15,7 +15,6 @@ export class UUIDController
         const UUID: _UUID = uuidGenerator();
 
         UuidErrors.ensureGenerator(UUID);
-
         Logs.write({ uuid: UUID }, `UUID gerado com sucesso.`, "info")
 
         return reply.send({ "UUID": UUID });
