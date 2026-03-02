@@ -9,6 +9,6 @@ export class CpfErrors extends BaseErrors
 
     static ensureValidator(CPF: string)
     {
-
+        if(!CPF) this.throwMissing("CPF")
     }
 }

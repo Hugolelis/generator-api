@@ -1,7 +1,7 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
 
 import { uuidGenerator } from '../core/generators/UUID';
-import { validatorUUID } from '../core/validators/UUID';
+import { uuidValidator } from '../core/validators/UUID';
 
 import { UuidErrors } from '../helpers/errors/uuid-errors';
 import { Logs } from '../helpers/utils/write_logs';
@@ -26,6 +26,6 @@ export class UUIDController
 
         UuidErrors.ensureValidator(UUID)
 
-        return reply.send({ "UUID": UUID, "isValid": validatorUUID(UUID) });
+        return reply.send({ "UUID": UUID, "isValid": uuidValidator(UUID) });
     }
 }
