@@ -1,4 +1,5 @@
-export interface _dateRequest {
+export interface _dateRequest 
+{
     start: Date;
     end: Date;
     day: number;
