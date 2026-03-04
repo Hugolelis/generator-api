@@ -15,8 +15,8 @@ export class DateController
         
         DateErrors.ensureGenerator(start, end, day, qtd)
         const date = dateGenerator(start, end, day, qtd)
-        Logs.write({date: date}, "Data(s) gerada(s) com sucesso.", "info")
+        Logs.write({ date: date }, "Data(s) gerada(s) com sucesso.", "info")
 
-        reply.send({ date: date})
+        reply.send({ date: date })
     }
 } 

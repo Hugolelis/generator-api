@@ -13,7 +13,7 @@ export class CpfController
         const CPF: string = cpfGenerator()
 
         CpfErrors.ensureGenerator(CPF)
-        Logs.write({cpf: CPF}, "CPF gerado com sucesso.", "info")
+        Logs.write({ cpf: CPF }, "CPF gerado com sucesso.", "info")
         
         reply.send({ "CPF": CPF })
     }
