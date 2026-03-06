@@ -10,7 +10,12 @@ export class Logs
     private static createLogger(filename: string) 
     {
         return pino({
-            timestamp: () => `,"time":"${new Date().toISOString()}"`
+            timestamp: () => {
+            const date = new Date().toLocaleString("pt-BR", {
+                timeZone: "America/Sao_Paulo"
+            });
+            return `,"time":"${date}"`;
+        }
         },
             pino.destination({
                 dest: path.join(__dirname, '..', '..', '..', 'logs', `${filename}.log`),

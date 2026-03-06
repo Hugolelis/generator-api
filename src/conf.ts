@@ -15,10 +15,10 @@ app.setErrorHandler(errorHandler)
 await app.register(cors)
 
 import { healthRoutes } from './routes/healthRoutes';
-app.register(healthRoutes, { prefix: '/api/verify' })
+app.register(healthRoutes, { prefix: 'api/verify' })
 
 import { UUIDRoutes } from "./routes/uuidRoutes";
-app.register(UUIDRoutes, { prefix: '/api/UUID' })
+app.register(UUIDRoutes, { prefix: 'api/UUID' })
 
 import { sortedNumberRoutes } from "./routes/sortedNumberRoutes";
 app.register(sortedNumberRoutes, { prefix: 'api/sortedNumber/'})
