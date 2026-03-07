@@ -1,4 +1,6 @@
 # 🚀 GeneratorAPI
+![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)
+![Version](https://img.shields.io/badge/version-1.0.0-cyan?style=for-the-badge&logo=github)
 
 A robust and scalable API built with Node.js and TypeScript, focused on delivering high-quality data generation services. This project follows industry 
 best practices and clean architecture to provide reliable tools for generating various data types, such as dates, CPF , URL shortening, and more.
@@ -91,7 +93,3 @@ npm run dev
 npm start
 ```
 ---
-
-## 📄 License
-
-This project is licensed under the **MIT License**. You can use, copy, and modify it as long as you include the original license and copyright notice.
