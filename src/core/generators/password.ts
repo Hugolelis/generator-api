@@ -1,5 +1,3 @@
-import { PasswordOptions } from "../../helpers/types/T-Password"
-
 import { randomInt } from "crypto";
 
 export function passwordGenerator(qtdCaractere: number, upper: boolean, lower: boolean, number: boolean, specCaractere: boolean): string 

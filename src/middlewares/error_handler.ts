@@ -1,4 +1,3 @@
-// src/middlewares/error-handler.ts
 import { FastifyError, FastifyRequest, FastifyReply } from 'fastify';
 import { BaseErrors } from "../helpers/errors/base-errors";
 
