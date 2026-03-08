@@ -1,4 +1,4 @@
-# 🚀 GeneratorAPI
+# 🚀 Generator-API
 ![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)
 ![Version](https://img.shields.io/badge/version-1.0.0-cyan?style=for-the-badge&logo=github)
 
