@@ -15,7 +15,7 @@ export class CpfController
         CpfErrors.ensureGenerator(CPF)
         Logs.write({ cpf: CPF }, "CPF gerado com sucesso.", "info")
         
-        reply.send({ "CPF": CPF })
+        reply.code(201).send({ "CPF": CPF })
     }
 
     static validate(req: FastifyRequest, reply: FastifyReply)

@@ -17,6 +17,6 @@ export class SortedNumberController
         const sorted = sortedNumberGenerator(min, max, qtd)
         Logs.write({ sortedNumber: sorted }, `número(s) gerado(s) com sucesso.`, "info")
 
-        reply.send({ "sorted": sorted, "qtd": qtd })
+        reply.code(201).send({ "sorted": sorted, "qtd": qtd })
     }
 }

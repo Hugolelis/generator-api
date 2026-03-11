@@ -17,6 +17,6 @@ export class DateController
         const date = dateGenerator(start, end, day, qtd)
         Logs.write({ date: date }, "Data(s) gerada(s) com sucesso.", "info")
 
-        reply.send({ date: date })
+        reply.code(201).send({ date: date })
     }
 } 

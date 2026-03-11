@@ -17,7 +17,7 @@ export class UUIDController
         UuidErrors.ensureGenerator(UUID);
         Logs.write({ uuid: UUID }, `UUID gerado com sucesso.`, "info")
 
-        return reply.send({ "UUID": UUID });
+        return reply.code(201).send({ "UUID": UUID });
     }
 
     static async validate(req: FastifyRequest, reply: FastifyReply) 

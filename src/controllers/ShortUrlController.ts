@@ -22,7 +22,7 @@ export class ShortUrlController
         const shortUrldata = await shortUrlGenerator(urlRepository)
         Logs.write({ "URL": URL, "shortUrldata": shortUrldata }, `URL encurtada gerada com sucesso.`, "info")
 
-        reply.send({ "URL": URL, "shortUrldata": shortUrldata })
+        reply.code(201).send({ "URL": URL, "shortUrldata": shortUrldata })
     }
 
     static redirect(req: FastifyRequest, reply: FastifyReply)

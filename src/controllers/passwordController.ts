@@ -19,6 +19,6 @@ export class PasswordController
         const password = passwordGenerator(qtdCaractere, upper, lower, number, specCaractere)
         Logs.write({ password: password }, "Senha gerada com sucesso.", "info")
 
-        reply.send({ "password": password })
+        reply.code(201).send({ "password": password })
     }
 }
