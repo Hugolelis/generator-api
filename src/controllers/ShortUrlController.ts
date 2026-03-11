@@ -4,6 +4,7 @@ import { shortUrlGenerator } from '../core/generators/ShortUrl';
 import { redirectUrl } from '../helpers/utils/redirect_url';
 
 import { ShortUrlErrors } from '../helpers/errors/shortUrl-errors';
+import { DatabaseErrors } from '../helpers/errors/database-errors';
 import { Logs } from '../helpers/utils/write_logs';
 
 
@@ -17,5 +18,17 @@ export class ShortUrlController
     {
         const { URL } = req.body as { URL: string }
         ShortUrlErrors.ensureGenerator(URL)
+    }
+
+    static redirect(req: FastifyRequest, reply: FastifyReply)
+    {
+
+    }
+
+    static async all(req: FastifyRequest, reply: FastifyReply)
+    {
+        const URLs = await urlRepository.findMany()
+
+        reply.send({ "URLs": URLs })
     }
 }
