@@ -9,12 +9,12 @@ export class BaseErrors extends Error
         this.statusCode = statusCode;
     }
 
-    static throwGenerationFailed(generator: string): never
+    static throwGenerationFailed(generator: string)
     {
         throw new BaseErrors(`Falha interna ao gerar ${generator}.`, 404);
     }
     
-    static throwMissing(field: string): never
+    static throwMissing(field: string)
     {
         throw new BaseErrors(`O campo ${field} é obrigatório e não foi fornecido.`, 400);
     }
