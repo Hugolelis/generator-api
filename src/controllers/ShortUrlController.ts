@@ -20,14 +20,26 @@ export class ShortUrlController
         ShortUrlErrors.ensureGenerator(URL)
 
         const shortUrldata = await shortUrlGenerator(urlRepository)
+
+        await urlRepository.create({
+            originalUrl: URL,
+            shortCode: shortUrldata.shortCode,
+            shortUrl: shortUrldata.shortUrl
+        })
+
         Logs.write({ "URL": URL, "shortUrldata": shortUrldata }, `URL encurtada gerada com sucesso.`, "info")
 
         reply.code(201).send({ "URL": URL, "shortUrldata": shortUrldata })
     }
 
-    static redirect(req: FastifyRequest, reply: FastifyReply)
+    static async redirect(req: FastifyRequest, reply: FastifyReply)
     {
+        const { shortCode } = req.params as { shortCode: string }
 
+        const url = (await urlRepository.findUnique({ shortCode })) as any
+        ShortUrlErrors.ensureRedirect(url)
+
+        reply.redirect(url.originalUrl)
     }
 
     static async all(req: FastifyRequest, reply: FastifyReply)

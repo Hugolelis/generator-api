@@ -8,10 +8,14 @@ export class ShortUrlErrors extends BaseErrors
 
         try 
         {
-            new URL(url); 
-        } catch (err) 
-        {
-            throw new BaseErrors("URL inválida.", 400);
+        new URL(url); 
+        }catch {
+        throw new BaseErrors("URL inválida.", 400);
         }
+    }
+    
+    static ensureRedirect(url: string)
+    {
+        if(!url) this.throwMissing("URL")
     }
 }
