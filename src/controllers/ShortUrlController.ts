@@ -1,10 +1,8 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
 
 import { shortUrlGenerator } from '../core/generators/ShortUrl';
-import { redirectUrl } from '../helpers/utils/redirect_url';
 
 import { ShortUrlErrors } from '../helpers/errors/shortUrl-errors';
-import { DatabaseErrors } from '../helpers/errors/database-errors';
 import { Logs } from '../helpers/utils/write_logs';
 
 
