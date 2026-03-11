@@ -94,8 +94,21 @@ HOST=0.0.0.0
 
 DATABASE_URL=""
 ```
+#### 4. Set Up the Database
 
-#### 4. Start the Server
+Make sure you have PostgreSQL installed and running, then create the local database
+
+Update your `.env` with the connection string:
+```bash
+DATABASE_URL="postgresql://postgres:yourpassword@host:port/generatorapi"
+```
+
+Then run the Prisma migration:
+```bash
+npx prisma migrate dev --name init
+```
+
+#### 5. Start the Server
 
 ```bash
 npm run dev
