@@ -1,6 +1,13 @@
-import { nanoid } from 'nanoid'
+import { generateShortCode } from "../../helpers/utils/generate_short_code"
+import dotenv from 'dotenv'
 
-export function shortUrlGenerator(url: string)
+dotenv.config()
+
+const { HOST, PORT } = process.env
+
+export async function shortUrlGenerator(repository: any): Promise<{ shortCode: string, shortUrl: string }>
 {
-    let shortCode: string = nanoid(6)
+    const shortCode = await generateShortCode(repository)
+
+    return { "shortCode": shortCode, "shortUrl": `http://${HOST}:${PORT}/api/shortUrl/redirect/${shortCode}` }
 }

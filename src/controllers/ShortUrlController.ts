@@ -14,10 +14,15 @@ const urlRepository = new GenericQueries(prisma.shortenedUrl);
 
 export class ShortUrlController 
 {
-    static generate(req: FastifyRequest, reply: FastifyReply)
+    static async generate(req: FastifyRequest, reply: FastifyReply)
     {
         const { URL } = req.body as { URL: string }
         ShortUrlErrors.ensureGenerator(URL)
+
+        const shortUrldata = await shortUrlGenerator(urlRepository)
+        Logs.write({ "URL": URL, "shortUrldata": shortUrldata }, `URL encurtada gerada com sucesso.`, "info")
+
+        reply.send({ "URL": URL, "shortUrldata": shortUrldata })
     }
 
     static redirect(req: FastifyRequest, reply: FastifyReply)

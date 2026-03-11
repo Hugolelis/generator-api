@@ -11,11 +11,12 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  // url      = env("DATABASE_URL")
 }
 
 model ShortenedUrl {
   id          Int      @id @default(autoincrement())
+  shortCode   String   @unique
   originalUrl String
   shortUrl    String   @unique
   createdAt   DateTime @default(now())

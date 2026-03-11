@@ -1,6 +1,7 @@
 -- CreateTable
 CREATE TABLE "shortened_urls" (
     "id" SERIAL NOT NULL,
+    "shortCode" TEXT NOT NULL,
     "originalUrl" TEXT NOT NULL,
     "shortUrl" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,

@@ -23,7 +23,7 @@ export class GenericQueries<T> {
         try {
         return await this.model.findUnique({ where })
         } catch {
-        DatabaseErrors.throwQueryFailed()
+        return DatabaseErrors.throwQueryFailed()
         }
     }
 
