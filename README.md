@@ -100,7 +100,7 @@ Make sure you have PostgreSQL installed and running, then create the local datab
 
 Update your `.env` with the connection string:
 ```bash
-DATABASE_URL="postgresql://postgres:yourpassword@host:port/generatorapi"
+DATABASE_URL="postgresql://postgres:<password>@<host>:<port>/<db_name>"
 ```
 
 Then run the Prisma migration:
