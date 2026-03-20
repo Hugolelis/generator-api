@@ -27,7 +27,7 @@ export class GenericQueries<T> {
         }
     }
 
-    async update(id: string, data: any): Promise<T> {
+    async update(id: string | number, data: any): Promise<T> {
         try {
         return await this.model.update({ where: { id }, data })
         } catch {
@@ -35,7 +35,7 @@ export class GenericQueries<T> {
         }
     }
 
-    async delete(id: string): Promise<T> {
+    async delete(id: string | number): Promise<T> {
         try {
         return await this.model.delete({ where: { id } })
         } catch {
