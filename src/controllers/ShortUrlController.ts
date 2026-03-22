@@ -17,6 +17,14 @@ export class ShortUrlController
         const { URL } = req.body as { URL: string }
         ShortUrlErrors.ensureGenerator(URL)
 
+        const existing = await urlRepository.findUnique({ originalUrl: URL })
+        console.log(existing)
+
+        if (existing) {
+            Logs.write({ "shortUrldata": existing }, `URL já existente, retornando shortUrl salva.`, "info")
+            return reply.code(200).send({ "URL": URL, "shortUrldata": existing })
+        }
+
         const shortUrldata = await shortUrlGenerator(urlRepository)
 
         await urlRepository.create({

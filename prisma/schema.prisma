@@ -17,7 +17,7 @@ datasource db {
 model ShortenedUrl {
   id          Int      @id @default(autoincrement())
   shortCode   String   @unique
-  originalUrl String
+  originalUrl String   @unique
   shortUrl    String   @unique
   createdAt   DateTime @default(now())
 
