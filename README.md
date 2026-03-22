@@ -33,7 +33,7 @@ The main tools used in this project are:
 
 * **Runtime:** [Node.js](https://nodejs.org/)
 * **Language:** [TypeScript](https://www.typescript.org/) (Static typing for enhanced security)
-* **ORM:** [Prisma](https://www.prisma.io/) (Data modeling and database queries)
+* **ORM:** [Prisma v6](https://www.prisma.io/) (Data modeling and database queries)
 * **Package Manager:** `npm`
 * **Configuration:** `dotenv` for environment variables and `tsconfig` for compilation settings.
 
