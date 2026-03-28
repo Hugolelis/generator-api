@@ -69,6 +69,12 @@ The project organization is designed for a clear separation of concerns:
 └── tsconfig.json         # TypeScript compiler configurations
 ```
 
+## 📖 API Documentation
+The API documentation is available via **Swagger UI** after starting the server:
+```
+http://{HOST}:{PORT}/docs
+```
+
 ---
 
 ## ⚙️ Running
