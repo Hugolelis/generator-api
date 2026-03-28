@@ -18,7 +18,6 @@ export class ShortUrlController
         ShortUrlErrors.ensureGenerator(URL)
 
         const existing = await urlRepository.findUnique({ originalUrl: URL })
-        console.log(existing)
 
         if (existing) {
             Logs.write({ "shortUrldata": existing }, `URL já existente, retornando shortUrl salva.`, "info")
@@ -48,10 +47,25 @@ export class ShortUrlController
         reply.redirect(url.originalUrl)
     }
 
-    static async all(req: FastifyRequest, reply: FastifyReply)
+    static async all(req: FastifyRequest, reply: FastifyReply) 
     {
-        const URLs = await urlRepository.findMany()
+        const { page = 1, limit = 10 } = req.query as { page: number, limit: number }
 
-        reply.send({ "URLs": URLs })
+        const skip = (page - 1) * limit
+
+        const [URLs, total] = await Promise.all([
+            prisma.shortenedUrl.findMany({ skip, take: limit }),
+            prisma.shortenedUrl.count()
+        ])
+
+        reply.send({
+            URLs,
+            pagination: {
+                total,
+                page,
+                limit,
+                pages: Math.ceil(total / limit)
+            }
+        })
     }
 }

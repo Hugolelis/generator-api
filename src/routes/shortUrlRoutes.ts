@@ -1,10 +1,11 @@
 import { FastifyInstance } from "fastify";
 import { ShortUrlController } from "../controllers/ShortUrlController";
+import { generateShortUrlSchemaSwagger, redirectShortUrlSchemaSwagger, allShortUrlsSchemaSwagger } from "../../documentation/shortUrl.docs";
 
 export async function shortUrlRoutes(app: FastifyInstance) 
 {
-    app.post('/generate', ShortUrlController.generate)
+    app.post('/generate', generateShortUrlSchemaSwagger, ShortUrlController.generate)
 
-    app.get('/redirect/:shortCode', ShortUrlController.redirect)
-    app.get('/all', ShortUrlController.all)
+    app.get('/:shortCode', redirectShortUrlSchemaSwagger, ShortUrlController.redirect)
+    app.get('/all', allShortUrlsSchemaSwagger, ShortUrlController.all)
 }

@@ -9,5 +9,5 @@ export async function shortUrlGenerator(repository: any): Promise<{ shortCode: s
 {
     const shortCode = await generateShortCode(repository)
 
-    return { "shortCode": shortCode, "shortUrl": `http://${HOST}:${PORT}/api/shortUrl/redirect/${shortCode}` }
+    return { "shortCode": shortCode, "shortUrl": `http://${HOST}:${PORT}/api/shortUrl/${shortCode}` }
 }

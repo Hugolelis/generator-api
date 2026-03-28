@@ -16,10 +16,7 @@ export class DateErrors extends BaseErrors
         const availableDays = countDaysInRange(start, end, day);
         if (qtd > availableDays) {
             throw new BaseErrors(
-                `
-                Intervalo insuficiente. Você pediu ${qtd} data(s), mas existem 
-                apenas ${availableDays} data(s) para o dia da semana selecionado.
-                `,400
+                `Intervalo insuficiente. Você pediu ${qtd} data(s), mas existem apenas ${availableDays} data(s) para o dia da semana selecionado.`,400
             );
         }
 

@@ -1,6 +1,7 @@
 import fastify from "fastify";
 import cors from "@fastify/cors";
 import { errorHandler } from "./middlewares/error_handler";
+import { setupSwagger } from "../documentation/swagger.setup";
 
 import { healthRoutes } from './routes/healthRoutes';
 import { UUIDRoutes } from "./routes/uuidRoutes";
@@ -14,8 +15,10 @@ export const app = fastify({
     logger: { transport: { target: 'pino-pretty' } }
 });
 
-app.setErrorHandler(errorHandler);
+
+await setupSwagger(app)
 await app.register(cors);
+app.setErrorHandler(errorHandler);
 
 const routes = [
     { route: healthRoutes, prefix: 'api/verify' },
