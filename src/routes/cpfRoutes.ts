@@ -2,7 +2,7 @@ import { FastifyInstance } from "fastify";
 
 import { CpfController } from "../controllers/CPFController";
 
-import { generateCpfSchemaSwagger, validateCpfSchemaSwagger } from "../../documentation/cpf.docs";
+import { generateCpfSchemaSwagger, validateCpfSchemaSwagger } from "../../documentation/cpf.swagger";
 
 export async function cpfRoutes(app: FastifyInstance) 
 {

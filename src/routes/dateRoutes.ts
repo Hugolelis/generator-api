@@ -1,7 +1,7 @@
 import { FastifyInstance } from 'fastify';
 import { DateController } from '../controllers/DateController';
 
-import { generateDateSchemaSwagger } from '../../documentation/date.docs';
+import { generateDateSchemaSwagger } from '../../documentation/date.swagger';
 
 export async function dateRoutes(app: FastifyInstance) 
 {

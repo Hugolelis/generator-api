@@ -1,7 +1,7 @@
 import fastify from "fastify";
 import cors from "@fastify/cors";
 import { errorHandler } from "./middlewares/error_handler";
-import { setupSwagger } from "../documentation/swagger.setup";
+import { setupSwagger } from "../swagger.setup";
 
 import { healthRoutes } from './routes/healthRoutes';
 import { UUIDRoutes } from "./routes/uuidRoutes";

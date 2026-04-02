@@ -9,6 +9,11 @@ import { _sortedNumberRequest } from '../helpers/interfaces/I-SortedNumber';
 
 export class SortedNumberController 
 {
+    // ==============================================
+    //  @post 
+    //  @return: { "sorted": sorted, "qtd": qtd }
+    //  @status:  201 OK
+    // ==============================================
     static generate(req: FastifyRequest, reply: FastifyReply) 
     {
         const { min=1, max=1, qtd=1} = req.body as _sortedNumberRequest;

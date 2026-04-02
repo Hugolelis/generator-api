@@ -8,6 +8,11 @@ import { Logs } from '../helpers/utils/write_logs';
 
 export class CpfController 
 {
+    // ==============================================
+    //  @get 
+    //  @return: { "CPF": CPF }
+    //  @status:  201 OK
+    // ==============================================
     static generate(req: FastifyRequest, reply: FastifyReply)
     {
         const CPF: string = cpfGenerator()
@@ -18,6 +23,11 @@ export class CpfController
         reply.code(201).send({ "CPF": CPF })
     }
 
+    // =======================================================
+    //  @post 
+    //  @return: { "CPF": CPF,  isValid: cpfValidator(CPF) }
+    //  @status:  200 OK
+    // =======================================================
     static validate(req: FastifyRequest, reply: FastifyReply)
     {
         const { CPF } = req.body as { CPF: string }

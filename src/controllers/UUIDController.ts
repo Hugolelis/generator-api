@@ -10,6 +10,11 @@ import { _UUID } from "../helpers/types/T-UUID";
 
 export class UUIDController 
 {
+    // ==============================================
+    //  @get 
+    //  @return: { "UUID": UUID }
+    //  @status:  201 OK
+    // ==============================================
     static async generate(req: FastifyRequest, reply: FastifyReply) 
     {
         const UUID: _UUID = uuidGenerator();
@@ -20,6 +25,11 @@ export class UUIDController
         return reply.code(201).send({ "UUID": UUID });
     }
 
+    // ============================================================
+    //  @post 
+    //  @return: { "UUID": UUID, "isValid": uuidValidator(UUID) }
+    //  @status:  200 OK
+    // ============================================================
     static async validate(req: FastifyRequest, reply: FastifyReply) 
     {
         const { UUID } = req.body as { UUID: _UUID };

@@ -9,6 +9,11 @@ import { _dateRequest } from '../helpers/interfaces/I-Date';
 
 export class DateController 
 {
+    // ==============================================
+    //  @post 
+    //  @return: { date: date }
+    //  @status:  201 OK
+    // ==============================================
     static generate(req: FastifyRequest, reply: FastifyReply) 
     {
         const { start, end, day, qtd = 1} = req.body as _dateRequest;

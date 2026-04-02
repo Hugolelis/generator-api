@@ -1,7 +1,7 @@
 import { FastifyInstance } from "fastify";
 import { UUIDController } from "../controllers/UUIDController";
 
-import { generateUUIDSchemaSwagger, validateUUIDSchemaSwagger } from "../../documentation/uuid.docs";
+import { generateUUIDSchemaSwagger, validateUUIDSchemaSwagger } from "../../documentation/uuid.swagger";
 
 export async function UUIDRoutes(app: FastifyInstance) 
 {

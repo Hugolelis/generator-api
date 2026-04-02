@@ -2,7 +2,7 @@ import { FastifyInstance } from "fastify";
 
 import { PasswordController } from "../controllers/passwordController";
 
-import { generatePasswordSchemaSwagger } from "../../documentation/password.docs";
+import { generatePasswordSchemaSwagger } from "../../documentation/password.swagger";
 
 export async function passwordRoutes(app: FastifyInstance) 
 {

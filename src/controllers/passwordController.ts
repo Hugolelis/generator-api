@@ -9,6 +9,11 @@ import { _passwordRequest } from '../helpers/interfaces/I-Password';
 
 export class PasswordController 
 {
+    // ==============================================
+    //  @post 
+    //  @return: { "password": password }
+    //  @status:  201 OK
+    // ==============================================
     static generate(req: FastifyRequest, reply: FastifyReply)
     {
         const { 
