@@ -2,6 +2,8 @@ import fastify from "fastify";
 import cors from "@fastify/cors";
 import { errorHandler } from "./middlewares/error_handler";
 import { setupSwagger } from "../swagger.config";
+import rateLimit from '@fastify/rate-limit';
+import type { FastifyRequest } from 'fastify';
 
 import { healthRoutes } from './routes/healthRoutes';
 import { UUIDRoutes } from "./routes/uuidRoutes";
@@ -12,9 +14,20 @@ import { passwordRoutes } from "./routes/passwordRoutes";
 import { shortUrlRoutes } from "./routes/shortUrlRoutes";
 
 export const app = fastify({ 
-    logger: { transport: { target: 'pino-pretty' } }
+    logger: { transport: { target: 'pino-pretty' } },
+    trustProxy: true,
 });
 
+await app.register(rateLimit, {
+    global: true,
+    max: 40,
+    timeWindow: '1 minute',
+    keyGenerator: (req: FastifyRequest) => req.ip,
+    errorResponseBuilder: () => ({
+        statusCode: 429,
+        message: 'Muitas requisições. Tente novamente em instantes.',
+    }),
+});
 
 await setupSwagger(app)
 await app.register(cors);

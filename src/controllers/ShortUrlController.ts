@@ -10,8 +10,8 @@ import { prisma } from '../helpers/utils/prisma_conn';
 export class ShortUrlController 
 {
     // ========================================================
-    //  @post 
-    //  @return: { "URL": URL, "shortUrldata": shortUrldata }
+    //  @post: /api/shortUrl/generate
+    //  @returns: { "URL": URL, "shortUrldata": shortUrldata }
     //  @status:  201 OK
     // ========================================================
     static async generate(req: FastifyRequest, reply: FastifyReply)
@@ -47,8 +47,8 @@ export class ShortUrlController
     }
 
     // ========================================================
-    //  @get
-    //  @return: reply.redirect(url.originalUrl)
+    //  @get: /api/shortUrl/:shortCode
+    //  @returns: reply.redirect(url.originalUrl)
     //  @status:  200 OK
     // ========================================================
     static async redirect(req: FastifyRequest, reply: FastifyReply)
@@ -67,8 +67,8 @@ export class ShortUrlController
     }
 
     // ========================================================
-    //  @get
-    //  @return: { URLs, 
+    //  @get: /api/shortUrl/all
+    //  @returns: { URLs, 
     //              pagination: {
     //                  total,
     //                  page,

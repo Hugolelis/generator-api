@@ -10,8 +10,8 @@ import { _dateRequest } from '../helpers/interfaces/I-Date';
 export class DateController 
 {
     // ==============================================
-    //  @post 
-    //  @return: { date: date }
+    //  @post: /api/date/generate
+    //  @returns: { date: date }
     //  @status:  201 OK
     // ==============================================
     static generate(req: FastifyRequest, reply: FastifyReply) 

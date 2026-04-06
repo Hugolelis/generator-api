@@ -9,8 +9,8 @@ import { Logs } from '../helpers/utils/write_logs';
 export class CpfController 
 {
     // ==============================================
-    //  @get 
-    //  @return: { "CPF": CPF }
+    //  @get: /api/CPF/generate
+    //  @returns: { "CPF": CPF }
     //  @status:  201 OK
     // ==============================================
     static generate(req: FastifyRequest, reply: FastifyReply)
@@ -24,8 +24,8 @@ export class CpfController
     }
 
     // =======================================================
-    //  @post 
-    //  @return: { "CPF": CPF,  isValid: cpfValidator(CPF) }
+    //  @post: /api/CPF/validate
+    //  @returns: { "CPF": CPF,  isValid: cpfValidator(CPF) }
     //  @status:  200 OK
     // =======================================================
     static validate(req: FastifyRequest, reply: FastifyReply)

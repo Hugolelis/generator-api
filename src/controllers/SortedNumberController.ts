@@ -10,8 +10,8 @@ import { _sortedNumberRequest } from '../helpers/interfaces/I-SortedNumber';
 export class SortedNumberController 
 {
     // ==============================================
-    //  @post 
-    //  @return: { "sorted": sorted, "qtd": qtd }
+    //  @post: /api/sortedNumber/generate
+    //  @returns: { "sorted": sorted, "qtd": qtd }
     //  @status:  201 OK
     // ==============================================
     static generate(req: FastifyRequest, reply: FastifyReply) 

@@ -3,8 +3,8 @@ import { FastifyRequest, FastifyReply } from 'fastify';
 export class HealthController 
 {
     // ============================================================
-    //  @get 
-    //  @return: { message: 'healthy', uptime: process.uptime() }
+    //  @get: /api/verify/health
+    //  @returns: { message: 'healthy', uptime: process.uptime() }
     //  @status:  200 OK
     // ============================================================
     static async health(req: FastifyRequest, reply: FastifyReply) 
@@ -13,8 +13,8 @@ export class HealthController
     }
 
     // ============================================================
-    //  @get 
-    //  @return: { message: 'healthy', uptime: process.uptime() }
+    //  @get: /api/verify/ping
+    //  @returns: { message: 'healthy', uptime: process.uptime() }
     //  @status:  200 OK
     // ============================================================
     static async ping(req: FastifyRequest, reply: FastifyReply) 

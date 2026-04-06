@@ -11,8 +11,8 @@ import { _UUID } from "../helpers/types/T-UUID";
 export class UUIDController 
 {
     // ==============================================
-    //  @get 
-    //  @return: { "UUID": UUID }
+    //  @get: /api/UUID/generate
+    //  @returns: { "UUID": UUID }
     //  @status:  201 OK
     // ==============================================
     static async generate(req: FastifyRequest, reply: FastifyReply) 
@@ -26,8 +26,8 @@ export class UUIDController
     }
 
     // ============================================================
-    //  @post 
-    //  @return: { "UUID": UUID, "isValid": uuidValidator(UUID) }
+    //  @post: /api/UUID/validate
+    //  @returns: { "UUID": UUID, "isValid": uuidValidator(UUID) }
     //  @status:  200 OK
     // ============================================================
     static async validate(req: FastifyRequest, reply: FastifyReply) 

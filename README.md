@@ -57,7 +57,6 @@ The project organization is designed for a clear separation of concerns:
 │   │   ├── types/        # TypeScript specific type definitions
 │   │   └── utils/        # General utility functions
 │   ├── middlewares/      # Request interceptors
-│   ├── repository/       # Data persistence layer
 │   ├── routes/           # API endpoint definitions
 │   ├── conf.ts           # Configuration file
 │   └── server.ts         # Server entry point (Bootstrap)
