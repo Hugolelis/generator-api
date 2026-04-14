@@ -36,6 +36,7 @@ A robust and scalable API built with Node.js and TypeScript, focused on deliveri
 
 ```text
 ├── logs/
+├── documentation/
 ├── prisma/
 ├── src/
 │   ├── controllers/
