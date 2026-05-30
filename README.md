@@ -1,97 +1,48 @@
-<p align="center">
-  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js" />
-  <img src="https://img.shields.io/badge/Fastify-000000?style=for-the-badge&logo=fastify&logoColor=white" alt="Fastify" />
-  <img src="https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white" alt="Prisma" />
-  <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
-</p>
+# Generator API
 
-<h1 align="center">Generator API</h1>
+<div align="left">
 
-<p align="center">
-  <strong>A high-performance data generation API built with Fastify and TypeScript</strong>
-</p>
-
-<p align="center">
-  <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="MIT License" /></a>
-  <img src="https://img.shields.io/badge/version-1.0.0-blue?style=flat-square" alt="Version 1.0.0" />
-  <img src="https://img.shields.io/badge/node-%3E%3D18-339933?style=flat-square" alt="Node >= 18" />
-</p>
-
----
-
-## 📋 About
-
-Generator API is a production-ready RESTful service that provides endpoints for generating common data types used in development, testing, and automation workflows. Built on **Fastify** — one of the fastest Node.js web frameworks — it delivers high throughput and low latency.
-
-The API includes rate limiting, CORS support, Swagger documentation, and a modular architecture following separation of concerns principles.
-
----
+[![License](https://img.shields.io/badge/License-MIT-1a1a2e?style=for-the-badge&logoColor=white)](LICENSE)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-1a1a2e?style=for-the-badge&logo=nodedotjs&logoColor=white)]()
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-1a1a2e?style=for-the-badge&logo=typescript&logoColor=white)]()
+[![Fastify](https://img.shields.io/badge/Fastify-5-1a1a2e?style=for-the-badge&logo=fastify&logoColor=white)]()
+[![Version](https://img.shields.io/badge/Version-1.0.0-1a1a2e?style=for-the-badge&logoColor=white)]()
 
 </div>
 
-| Endpoint | Description |
-|----------|-------------|
-| **CPF** | Generate valid Brazilian CPF numbers (with or without formatting) |
-| **UUID** | Generate UUID v4 identifiers |
-| **Password** | Generate secure random passwords with configurable options |
-| **Sorted Number** | Generate sorted number sequences within defined ranges |
-| **Date** | Generate random dates and date-related utilities |
-| **Short URL** | Create and resolve shortened URLs (persisted via PostgreSQL) |
-| **Health** | Health check endpoint for monitoring |
+> **Generator API** is a high-performance REST API for generating common data types used in development, testing, and automation workflows. Built with Fastify and TypeScript, it delivers low-latency responses with built-in rate limiting, CORS, and interactive Swagger documentation.
 
 ---
 
-## 🛠️ Tech Stack
+## Table of Contents
 
-| Technology | Purpose |
-|------------|---------|
-| [Node.js](https://nodejs.org/) | Runtime environment |
-| [TypeScript](https://www.typescriptlang.org/) | Type-safe development |
-| [Fastify](https://www.fastify.io/) | HTTP framework (with CORS, rate limiting) |
-| [Prisma](https://www.prisma.io/) | ORM & database migrations |
-| [PostgreSQL](https://www.postgresql.org/) | Relational database |
-| [Swagger](https://swagger.io/) | API documentation |
-| [Pino](https://getpino.io/) | Structured logging |
-
----
-
-## 📂 Project Structure
-
-```
-src/
-├── controllers/       # Request/response handling
-├── core/
-│   ├── generators/    # Data generation engines
-│   └── validators/    # Input validation logic
-├── helpers/
-│   ├── errors/        # Custom error classes
-│   ├── interfaces/    # TypeScript interfaces
-│   ├── types/         # Type definitions
-│   └── utils/         # Utility functions
-├── middlewares/        # Request interceptors (error handler, etc.)
-├── routes/            # Route definitions
-├── conf.ts            # Application configuration
-└── server.ts          # Entry point
-
-prisma/
-└── schema.prisma      # Database schema
-
-documentation/         # Swagger route documentation
-swagger.config.ts      # Swagger setup
-```
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Commands](#commands)
+- [Configuration](#configuration)
+- [Architecture](#architecture)
+- [Contributing](#contributing)
+- [License](#license)
 
 ---
 
-## 🚀 Getting Started
+## Features
 
-### Prerequisites
+| Capability | Description |
+|---|---|
+| **CPF Generation** | Generate valid Brazilian CPF numbers (with or without formatting) |
+| **UUID v4** | Generate UUID v4 identifiers |
+| **Password** | Generate secure random passwords with configurable character sets and length |
+| **Sorted Numbers** | Generate unique sorted random numbers within a range |
+| **Date Services** | Generate random dates with optional day-of-week filtering |
+| **URL Shortener** | Create, resolve, and list shortened URLs persisted via PostgreSQL |
+| **Health Check** | Monitor service availability |
+| **Interactive Docs** | Built-in Swagger UI at `/docs` |
 
-- [Node.js](https://nodejs.org/) >= 18
-- [PostgreSQL](https://www.postgresql.org/) installed and running
-- npm
+---
 
-### Installation
+## Installation
 
 ```bash
 # Clone the repository
@@ -107,12 +58,12 @@ cp .env.example .env
 
 ### Configuration
 
-Edit the `.env` file (copy from `.env.example`):
+Edit the `.env` file:
 
 ```env
 PORT=3000
 HOST=0.0.0.0
-DATABASE_URL="postgresql://postgres:<password>@<host>:<port>/<db_name>"
+DATABASE_URL="postgresql://postgres:<password>@localhost:5432/GeneratorAPI"
 ```
 
 ### Database Setup
@@ -122,49 +73,205 @@ DATABASE_URL="postgresql://postgres:<password>@<host>:<port>/<db_name>"
 npx prisma migrate dev --name init
 ```
 
-### Running
+---
+
+## Usage
+
+### Start the server
 
 ```bash
-# Development mode (with hot reload)
-npm run dev
+npm run dev        # development with hot reload
+npm start          # production
+```
 
-# Production mode
-npm start
+Once running, the API is available at `http://localhost:3000` and the interactive documentation at `http://localhost:3000/docs`.
+
+### Generate a UUID
+
+```bash
+curl http://localhost:3000/api/uuid/generate
+```
+
+```json
+{ "UUID": "550e8400-e29b-41d4-a716-446655440000" }
+```
+
+### Generate a password
+
+```bash
+curl -X POST http://localhost:3000/api/password/generate \
+  -H "Content-Type: application/json" \
+  -d '{"qtdCaractere": 16, "upper": true, "lower": true, "number": true, "specCaractere": true}'
+```
+
+```json
+{ "password": "aB3#kL9$xR2&pQ7@" }
+```
+
+### Generate a CPF
+
+```bash
+curl http://localhost:3000/api/cpf/generate
+```
+
+```json
+{ "CPF": "123.456.789-09" }
+```
+
+### Shorten a URL
+
+```bash
+curl -X POST http://localhost:3000/api/short-url/generate \
+  -H "Content-Type: application/json" \
+  -d '{"URL": "https://example.com/long-url"}'
+```
+
+```json
+{
+  "URL": "https://example.com/long-url",
+  "shortUrldata": {
+    "shortCode": "abc123",
+    "shortUrl": "http://localhost:3000/api/short-url/abc123"
+  }
+}
+```
+
+### List all shortened URLs
+
+```bash
+curl "http://localhost:3000/api/short-url/all?page=1&limit=10"
 ```
 
 ---
 
-## 📖 API Documentation
+## Commands
 
-Once the server is running, interactive Swagger documentation is available at:
+### API Endpoints
 
-```
-http://{HOST}:{PORT}/docs
-```
+| Method | Endpoint | Description | Aliases |
+|---|---|---|---|
+| `GET` | `/api/uuid/generate` | Generate UUID | — |
+| `GET` | `/api/cpf/generate` | Generate CPF | — |
+| `POST` | `/api/cpf/validate` | Validate CPF | — |
+| `POST` | `/api/password/generate` | Generate password | — |
+| `GET` | `/api/sorted-number/generate` | Generate sorted numbers | — |
+| `POST` | `/api/date/generate` | Generate dates | — |
+| `POST` | `/api/short-url/generate` | Create shortened URL | — |
+| `GET` | `/api/short-url/all` | List all short URLs | — |
+| `GET` | `/api/short-url/:shortCode` | Redirect to original URL | — |
+| `GET` | `/api/verify/health` | Health check | — |
+| `GET` | `/api/verify/ping` | Ping | — |
+
+### Query / Body Parameters
+
+| Endpoint | Parameter | Type | Default | Description |
+|---|---|---|---|---|
+| `sorted-number` | `min` | integer | `1` | Minimum value |
+| | `max` | integer | `1` | Maximum value |
+| | `qtd` | integer | `1` | Quantity of numbers |
+| `date` | `start` | string | — | Start date (ISO) |
+| | `end` | string | — | End date (ISO) |
+| | `day` | integer (0-6) | — | Filter by day of week |
+| | `qtd` | integer | `1` | Number of dates |
+| `password` | `qtdCaractere` | integer (6-20) | `6` | Password length |
+| | `upper` | boolean | `true` | Include uppercase |
+| | `lower` | boolean | `true` | Include lowercase |
+| | `number` | boolean | `true` | Include numbers |
+| | `specCaractere` | boolean | `true` | Include special chars |
+| `cpf` `validate` | `CPF` | string | — | CPF to validate |
+| `short-url` `all` | `page` | integer | `1` | Page number |
+| | `limit` | integer | `10` | Items per page |
 
 ---
 
-## ⚡ Rate Limiting
+## Configuration
 
-The API is protected by a global rate limiter: **40 requests per minute** per IP. Exceeding this limit returns a `429 Too Many Requests` response.
+### Rate Limiting
+
+The API enforces a global rate limit of **40 requests per minute** per IP. When exceeded, the server responds with:
+
+```json
+{
+  "statusCode": 429,
+  "message": "Muitas requisições. Tente novamente em instantes."
+}
+```
+
+### Environment Variables
+
+| Variable | Default | Description |
+|---|---|---|
+| `PORT` | `3000` | Server port |
+| `HOST` | `0.0.0.0` | Server host |
+| `DATABASE_URL` | — | PostgreSQL connection string |
 
 ---
 
-## 🧪 API Endpoints
+## Architecture
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `GET` | `/api/verify` | Health check |
-| `GET` | `/api/uuid/generate` | Generate UUID |
-| `GET` | `/api/cpf/generate` | Generate CPF |
-| `GET` | `/api/password/generate` | Generate password |
-| `GET` | `/api/sorted-number/generate` | Generate sorted numbers |
-| `POST` | `/api/date/generate` | Generate date utilities |
-| `POST` | `/api/short-url/generate` | Create shortened URL |
-| `GET` | `/api/short-url/all` | List all shortened URLs |
+```
+src/
+├── conf.ts                 # Application bootstrap (Fastify, CORS, rate limit, Swagger)
+├── server.ts               # Entry point with graceful shutdown
+├── controllers/            # Request/response handling
+│   ├── CPFController.ts
+│   ├── DateController.ts
+│   ├── HealthController.ts
+│   ├── ShortUrlController.ts
+│   ├── SortedNumberController.ts
+│   ├── UUIDController.ts
+│   └── passwordController.ts
+├── core/
+│   ├── generators/         # Data generation engines
+│   │   ├── CPF.ts
+│   │   ├── Date.ts
+│   │   ├── ShortUrl.ts
+│   │   ├── SortedNumber.ts
+│   │   ├── UUID.ts
+│   │   └── password.ts
+│   └── validators/         # Input validation
+│       ├── CPF.ts
+│       └── UUID.ts
+├── helpers/
+│   ├── errors/             # Custom error classes
+│   ├── interfaces/         # TypeScript interfaces
+│   ├── types/              # Type definitions
+│   └── utils/              # Utilities (logs, Prisma connection, short code)
+├── middlewares/
+│   └── error_handler.ts    # Global error handler
+├── routes/                 # Route definitions by resource
+└── generated/
+    └── prisma/             # Prisma client (auto-generated)
+
+prisma/
+└── schema.prisma           # Database schema (ShortenedUrl model)
+
+documentation/              # Swagger per-route schemas
+swagger.config.ts           # Swagger setup
+```
+
+The pipeline follows a clean separation of concerns:
+
+1. **Routes** — register endpoints with validation schemas
+2. **Controllers** — extract request data, call validators and generators, send response
+3. **Generators** — pure business logic for data generation
+4. **Validators** — parameter validation before generation
+5. **Error Handler** — centralized exception handling
+
+---
+
+## Contributing
+
+Contributions are welcome! To get started:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/my-feature`)
+3. Commit your changes (`git commit -am 'Add my feature'`)
+4. Push to the branch (`git push origin feature/my-feature`)
+5. Open a Pull Request
 
 ---
 
 ## License
 
-This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
+Distributed under the **MIT License**. See [LICENSE](LICENSE) for more information.
