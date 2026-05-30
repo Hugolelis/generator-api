@@ -1,6 +1,6 @@
 export function cpfGenerator(): string {
     const rnd = (n: number) => Math.floor(Math.random() * n);
-    const mod = (dividendo: number, divisor: number) => Math.round(dividendo - (Math.floor(dividendo / divisor) * divisor));
+    const mod = (dividendo: number, divisor: number) => dividendo % divisor;
 
     const n = Array.from({ length: 9 }, () => rnd(9));
 

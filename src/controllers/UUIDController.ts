@@ -17,12 +17,16 @@ export class UUIDController
     // ==============================================
     static async generate(req: FastifyRequest, reply: FastifyReply) 
     {
-        const UUID: _UUID = uuidGenerator();
+        try {
+            const UUID: _UUID = uuidGenerator();
 
-        UuidErrors.ensureGenerator(UUID);
-        Logs.write({ uuid: UUID }, `UUID gerado com sucesso.`, "info")
+            UuidErrors.ensureGenerator(UUID);
+            Logs.write({ uuid: UUID }, `UUID gerado com sucesso.`, "info")
 
-        return reply.code(201).send({ "UUID": UUID });
+            return reply.code(200).send({ "UUID": UUID });
+        } catch(error) {
+            throw error
+        }
     }
 
     // ============================================================
@@ -32,10 +36,14 @@ export class UUIDController
     // ============================================================
     static async validate(req: FastifyRequest, reply: FastifyReply) 
     {
-        const { UUID } = req.body as { UUID: _UUID };
+        try {
+            const { UUID } = req.body as { UUID: _UUID };
 
-        UuidErrors.ensureValidator(UUID)
+            UuidErrors.ensureValidator(UUID)
 
-        return reply.send({ "UUID": UUID, "isValid": uuidValidator(UUID) });
+            return reply.send({ "UUID": UUID, "isValid": uuidValidator(UUID) });
+        } catch(error) {
+            throw error
+        }
     }
 }

@@ -1,7 +1,5 @@
 import { BaseErrors } from "./base-errors";
 
-import { passwordGenerator } from "../../core/generators/password";
-
 export class PasswordErrors extends BaseErrors
 {
     static ensureGenerator(qtdCaractere: number, upper: boolean, lower: boolean, number: boolean, specCaractere: boolean)
@@ -11,7 +9,5 @@ export class PasswordErrors extends BaseErrors
 
         if(!upper && !lower && !number && !specCaractere) 
             throw new BaseErrors("Ao menos uma das opções (upper, lower, number, specCaractere) deve estar selecionada.", 400)
-
-        if(passwordGenerator(qtdCaractere, upper, lower, number, specCaractere) == null) this.throwGenerationFailed('password')
     }
 }

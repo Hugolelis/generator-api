@@ -35,12 +35,12 @@ app.setErrorHandler(errorHandler);
 
 const routes = [
     { route: healthRoutes, prefix: 'api/verify' },
-    { route: UUIDRoutes, prefix: 'api/UUID' },
-    { route: sortedNumberRoutes, prefix: 'api/sortedNumber' },
+    { route: UUIDRoutes, prefix: 'api/uuid' },
+    { route: sortedNumberRoutes, prefix: 'api/sorted-number' },
     { route: dateRoutes, prefix: 'api/date' },
-    { route: cpfRoutes, prefix: 'api/CPF' },
+    { route: cpfRoutes, prefix: 'api/cpf' },
     { route: passwordRoutes, prefix: 'api/password' },
-    { route: shortUrlRoutes, prefix: 'api/shortUrl' }
+    { route: shortUrlRoutes, prefix: 'api/short-url' }
 ];
 
 routes.forEach(({ route, prefix }) => app.register(route, { prefix }));

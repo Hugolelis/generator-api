@@ -15,12 +15,16 @@ export class CpfController
     // ==============================================
     static generate(req: FastifyRequest, reply: FastifyReply)
     {
-        const CPF: string = cpfGenerator()
+        try {
+            const CPF: string = cpfGenerator()
 
-        CpfErrors.ensureGenerator(CPF)
-        Logs.write({ cpf: CPF }, "CPF gerado com sucesso.", "info")
-        
-        reply.code(201).send({ "CPF": CPF })
+            CpfErrors.ensureGenerator(CPF)
+            Logs.write({ cpf: CPF }, "CPF gerado com sucesso.", "info")
+            
+            reply.code(200).send({ "CPF": CPF })
+        } catch(error) {
+            throw error
+        }
     }
 
     // =======================================================
@@ -30,10 +34,14 @@ export class CpfController
     // =======================================================
     static validate(req: FastifyRequest, reply: FastifyReply)
     {
-        const { CPF } = req.body as { CPF: string }
-        
-        CpfErrors.ensureValidator(CPF)
+        try {
+            const { CPF } = req.body as { CPF: string }
+            
+            CpfErrors.ensureValidator(CPF)
 
-        reply.send({ "CPF": CPF,  isValid: cpfValidator(CPF)})
+            reply.send({ "CPF": CPF,  isValid: cpfValidator(CPF)})
+        } catch(error) {
+            throw error
+        }
     }
 }

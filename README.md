@@ -107,7 +107,7 @@ cp .env.example .env
 
 ### Configuration
 
-Edit the `.env` file:
+Edit the `.env` file (copy from `.env.example`):
 
 ```env
 PORT=3000
@@ -155,21 +155,16 @@ The API is protected by a global rate limiter: **40 requests per minute** per IP
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | `GET` | `/api/verify` | Health check |
-| `GET` | `/api/UUID` | Generate UUID |
-| `GET` | `/api/sortedNumber` | Generate sorted numbers |
-| `GET` | `/api/date` | Generate date utilities |
-| `GET` | `/api/CPF` | Generate CPF |
-| `GET` | `/api/password` | Generate password |
-| `POST` | `/api/shortUrl` | Create shortened URL |
+| `GET` | `/api/uuid/generate` | Generate UUID |
+| `GET` | `/api/cpf/generate` | Generate CPF |
+| `GET` | `/api/password/generate` | Generate password |
+| `GET` | `/api/sorted-number/generate` | Generate sorted numbers |
+| `POST` | `/api/date/generate` | Generate date utilities |
+| `POST` | `/api/short-url/generate` | Create shortened URL |
+| `GET` | `/api/short-url/all` | List all shortened URLs |
 
 ---
 
 ## License
 
 This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
-
----
-
-<p align="center">
-  Built with ❤️ by <a href="https://github.com/Hugolelis">Hugolelis</a>
-</p>

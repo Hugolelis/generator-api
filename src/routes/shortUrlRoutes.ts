@@ -6,6 +6,6 @@ export async function shortUrlRoutes(app: FastifyInstance)
 {
     app.post('/generate', generateShortUrlSchemaSwagger, ShortUrlController.generate)
 
-    app.get('/:shortCode', redirectShortUrlSchemaSwagger, ShortUrlController.redirect)
     app.get('/all', allShortUrlsSchemaSwagger, ShortUrlController.all)
+    app.get('/:shortCode', redirectShortUrlSchemaSwagger, ShortUrlController.redirect)
 }

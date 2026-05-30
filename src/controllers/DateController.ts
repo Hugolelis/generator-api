@@ -16,12 +16,16 @@ export class DateController
     // ==============================================
     static generate(req: FastifyRequest, reply: FastifyReply) 
     {
-        const { start, end, day, qtd = 1} = req.body as _dateRequest;
-        
-        DateErrors.ensureGenerator(start, end, day, qtd)
-        const date = dateGenerator(start, end, day, qtd)
-        Logs.write({ date: date }, "Data(s) gerada(s) com sucesso.", "info")
+        try {
+            const { start, end, day, qtd = 1} = req.body as _dateRequest;
+            
+            DateErrors.ensureGenerator(start, end, day, qtd)
+            const date = dateGenerator(start, end, day, qtd)
+            Logs.write({ date: date }, "Data(s) gerada(s) com sucesso.", "info")
 
-        reply.code(201).send({ date: date })
+            reply.code(200).send({ date: date })
+        } catch(error) {
+            throw error
+        }
     }
 } 

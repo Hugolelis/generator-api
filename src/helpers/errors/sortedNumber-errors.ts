@@ -1,7 +1,5 @@
 import { BaseErrors } from "./base-errors";
 
-import { sortedNumberGenerator } from "../../core/generators/SortedNumber";
-
 export class SortedNumberErrors extends BaseErrors 
 {
     static ensureGenerator(min: number, max: number, qtd: number) 
@@ -14,7 +12,5 @@ export class SortedNumberErrors extends BaseErrors
             
         const rangeDisponivel = (max - min) + 1;
         if(qtd > rangeDisponivel) throw new BaseErrors(`Impossível sortear ${qtd} números únicos em um intervalo de apenas ${rangeDisponivel} números.`, 400)        
-
-        if(sortedNumberGenerator(min, max, qtd) == null) this.throwGenerationFailed("número sorteado(s)")
     }
 }

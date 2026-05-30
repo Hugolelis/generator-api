@@ -5,11 +5,16 @@ import path from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const loggers = new Map<string, pino.Logger>();
+
 export class Logs 
 {
-    private static createLogger(filename: string) 
+    private static getLogger(filename: string) 
     {
-        return pino({
+        const existing = loggers.get(filename);
+        if (existing) return existing;
+
+        const logger = pino({
             timestamp: () => {
             const date = new Date().toLocaleString("pt-BR", {
                 timeZone: "America/Sao_Paulo"
@@ -23,6 +28,9 @@ export class Logs
                 sync: false 
             })
         );
+
+        loggers.set(filename, logger);
+        return logger;
     }
 
     static write(data: object, message: string, type: Level)
@@ -30,7 +38,7 @@ export class Logs
         const keys = Object.keys(data);
         const logFilename = keys.length > 0 ? keys[0] : 'default';
 
-        const logger = this.createLogger(logFilename);
+        const logger = this.getLogger(logFilename);
         logger[type](data, message);
     }
 }

@@ -1,7 +1,5 @@
 import { BaseErrors } from "./base-errors";
 
-import { dateGenerator } from "../../core/generators/Date";
-
 import { countDaysInRange } from "../utils/count_days_Range";
 
 export class DateErrors extends BaseErrors 
@@ -19,7 +17,5 @@ export class DateErrors extends BaseErrors
                 `Intervalo insuficiente. Você pediu ${qtd} data(s), mas existem apenas ${availableDays} data(s) para o dia da semana selecionado.`,400
             );
         }
-
-        if(dateGenerator(start, end, day, qtd) == null) this.throwGenerationFailed("Data(s)")
     }
 }

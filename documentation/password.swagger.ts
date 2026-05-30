@@ -5,17 +5,16 @@ export const generatePasswordSchemaSwagger = {
         description: 'Generates a random password based on the given parameters',
         body: {
         type: 'object',
-        required: ['qtdCaractere'],
         properties: {
-            qtdCaractere:  { type: 'number' },
-            upper:         { type: 'boolean' },
-            lower:         { type: 'boolean' },
-            number:        { type: 'boolean' },
-            specCaractere: { type: 'boolean' }
+            qtdCaractere:  { type: 'integer', minimum: 6, maximum: 20, default: 6 },
+            upper:         { type: 'boolean', default: true },
+            lower:         { type: 'boolean', default: true },
+            number:        { type: 'boolean', default: true },
+            specCaractere: { type: 'boolean', default: true }
         }
         },
         response: {
-            201: {
+            200: {
                 type: 'object',
                     properties: {
                     password: { type: 'string' }

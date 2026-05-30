@@ -7,13 +7,13 @@ export const generateSortedNumberSchemaSwagger =
         body: {
         type: 'object',
         properties: {
-            min: { type: 'number', default: 1  },
-            max: { type: 'number', default: 1  },
-            qtd: { type: 'number', default: 1  }
+            min: { type: 'integer', minimum: 0, default: 1 },
+            max: { type: 'integer', minimum: 1, default: 1 },
+            qtd: { type: 'integer', minimum: 1, maximum: 20, default: 1 }
         }
         },
         response: {
-            201: {
+            200: {
                 type: 'object',
                 properties: {
                     sorted: {

@@ -11,7 +11,7 @@ export class BaseErrors extends Error
 
     static throwGenerationFailed(generator: string)
     {
-        throw new BaseErrors(`Falha interna ao gerar ${generator}.`, 404);
+        throw new BaseErrors(`Falha interna ao gerar ${generator}.`, 500);
     }
     
     static throwMissing(field: string)

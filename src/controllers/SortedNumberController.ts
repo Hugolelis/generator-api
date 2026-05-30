@@ -16,12 +16,16 @@ export class SortedNumberController
     // ==============================================
     static generate(req: FastifyRequest, reply: FastifyReply) 
     {
-        const { min=1, max=1, qtd=1} = req.body as _sortedNumberRequest;
+        try {
+            const { min=1, max=1, qtd=1} = req.body as _sortedNumberRequest;
 
-        SortedNumberErrors.ensureGenerator(min, max, qtd)
-        const sorted = sortedNumberGenerator(min, max, qtd)
-        Logs.write({ sortedNumber: sorted }, `número(s) gerado(s) com sucesso.`, "info")
+            SortedNumberErrors.ensureGenerator(min, max, qtd)
+            const sorted = sortedNumberGenerator(min, max, qtd)
+            Logs.write({ sortedNumber: sorted }, `número(s) gerado(s) com sucesso.`, "info")
 
-        reply.code(201).send({ "sorted": sorted, "qtd": qtd })
+            reply.code(200).send({ "sorted": sorted, "qtd": qtd })
+        } catch(error) {
+            throw error
+        }
     }
 }

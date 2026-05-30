@@ -1,13 +1,10 @@
 import { generateShortCode } from "../../helpers/utils/generate_short_code"
-import dotenv from 'dotenv'
-
-dotenv.config()
-
-const { HOST, PORT } = process.env
 
 export async function shortUrlGenerator(repository: any): Promise<{ shortCode: string, shortUrl: string }>
 {
     const shortCode = await generateShortCode(repository)
+    const host = process.env.HOST || 'localhost'
+    const port = process.env.PORT || '3000'
 
-    return { "shortCode": shortCode, "shortUrl": `http://${HOST}:${PORT}/api/shortUrl/${shortCode}` }
+    return { "shortCode": shortCode, "shortUrl": `http://${host}:${port}/api/short-url/${shortCode}` }
 }

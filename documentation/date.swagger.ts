@@ -6,15 +6,16 @@ export const generateDateSchemaSwagger =
         description: 'Generates one or more random dates based on the given parameters',
         body: {
         type: 'object',
+        required: ['start', 'end'],
         properties: {
             start: { type: 'string' },
             end:   { type: 'string' },
-            day:   { type: 'number' },
-            qtd:   { type: 'number' }
+            day:   { type: 'integer', minimum: 0, maximum: 6 },
+            qtd:   { type: 'integer', minimum: 1 }
         }
         },
         response: {
-            201: {
+            200: {
                 type: 'object',
                 properties: {
                     date: {
