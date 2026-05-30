@@ -144,45 +144,6 @@ http://{HOST}:{PORT}/docs
 
 ---
 
-<<<<<<< HEAD
-## API Documentation
-
-Swagger UI available after starting the server
-
----
-
-## Running
-
-**1. Clone the repository**
-```bash
-git clone https://github.com/Hugolelis/GeneratorAPI.git
-cd GeneratorAPI
-```
-
-**2. Install dependencies**
-```bash
-npm install
-```
-
-**3. Configure environment variables**
-```bash
-PORT=3000
-HOST=0.0.0.0
-DATABASE_URL=""
-```
-
-**4. Set up the database**
-```bash
-DATABASE_URL="postgresql://postgres:<password>@<host>:<port>/<db_name>"
-npx prisma migrate dev --name init
-```
-
-**5. Start the server**
-```bash
-npm run dev
-```
-
-=======
 ## ⚡ Rate Limiting
 
 The API is protected by a global rate limiter: **40 requests per minute** per IP. Exceeding this limit returns a `429 Too Many Requests` response.
@@ -201,14 +162,10 @@ The API is protected by a global rate limiter: **40 requests per minute** per IP
 | `GET` | `/api/password` | Generate password |
 | `POST` | `/api/shortUrl` | Create shortened URL |
 
->>>>>>> 746a5d3 ((updated): readme)
 ---
 
 ## License
 
-<<<<<<< HEAD
-Licensed under the **MIT** License. See [LICENSE](LICENSE) for details.
-=======
 This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
 
 ---
@@ -216,4 +173,3 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 <p align="center">
   Built with ❤️ by <a href="https://github.com/Hugolelis">Hugolelis</a>
 </p>
->>>>>>> 746a5d3 ((updated): readme)
