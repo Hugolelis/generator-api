@@ -1,7 +1,7 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
 
-import { cpfGenerator } from '../core/generators/CPF';
-import { cpfValidator } from '../core/validators/CPF';
+import { cpfGenerator } from '../generators/CPF';
+import { cpfValidator } from '../validators/CPF';
 
 import { CpfErrors } from '../helpers/errors/cpf-errors';
 import { Logs } from '../helpers/utils/write_logs';

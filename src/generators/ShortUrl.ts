@@ -1,4 +1,4 @@
-import { generateShortCode } from "../../helpers/utils/generate_short_code"
+import { generateShortCode } from "../helpers/utils/generate_short_code"
 
 export async function shortUrlGenerator(repository: any): Promise<{ shortCode: string, shortUrl: string }>
 {

@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
 
-import { dateGenerator } from '../core/generators/Date';
+import { dateGenerator } from '../generators/Date';
 
 import { DateErrors } from '../helpers/errors/date-errors';
 import { Logs } from '../helpers/utils/write_logs';

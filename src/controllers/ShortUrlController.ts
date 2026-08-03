@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
 
-import { shortUrlGenerator } from '../core/generators/ShortUrl';
+import { shortUrlGenerator } from '../generators/ShortUrl';
 
 import { ShortUrlErrors } from '../helpers/errors/shortUrl-errors';
 import { Logs } from '../helpers/utils/write_logs';

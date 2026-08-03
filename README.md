@@ -221,17 +221,16 @@ src/
 │   ├── SortedNumberController.ts
 │   ├── UUIDController.ts
 │   └── passwordController.ts
-├── core/
-│   ├── generators/         # Data generation engines
-│   │   ├── CPF.ts
-│   │   ├── Date.ts
-│   │   ├── ShortUrl.ts
-│   │   ├── SortedNumber.ts
-│   │   ├── UUID.ts
-│   │   └── password.ts
-│   └── validators/         # Input validation
-│       ├── CPF.ts
-│       └── UUID.ts
+├── generators/             # Data generation engines
+│   ├── CPF.ts
+│   ├── Date.ts
+│   ├── ShortUrl.ts
+│   ├── SortedNumber.ts
+│   ├── UUID.ts
+│   └── password.ts
+├── validators/             # Input validation
+│   ├── CPF.ts
+│   └── UUID.ts
 ├── helpers/
 │   ├── errors/             # Custom error classes
 │   ├── interfaces/         # TypeScript interfaces

@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
 
-import { passwordGenerator } from '../core/generators/password';
+import { passwordGenerator } from '../generators/password';
 
 import { PasswordErrors } from '../helpers/errors/password-errors';
 import { Logs } from '../helpers/utils/write_logs';

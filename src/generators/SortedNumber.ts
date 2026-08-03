@@ -1,4 +1,4 @@
-import { _sortedNumber } from "../../helpers/types/T-SortedNumber";
+import { _sortedNumber } from "../helpers/types/T-SortedNumber";
 
 export function sortedNumberGenerator(min: number, max: number, qtd: number): _sortedNumber {
     const pool: number[] = []
