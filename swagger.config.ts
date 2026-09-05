@@ -7,7 +7,7 @@ export async function setupSwagger(app: FastifyInstance)
     await app.register(swagger, {
         openapi: {
             info: {
-                title: 'Nexo API',
+                title: 'Generator API',
                 description: 'Documentation API',
                 version: '1.0.0'
             },
