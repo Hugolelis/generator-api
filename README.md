@@ -291,7 +291,7 @@ The API enforces a global rate limit of **40 requests per minute** per IP. When 
 
 ## License
 
-Distributed under the **MIT License**. See [LICENSE](LICENSE) for more information.
+Distributed under the **MIT License**.
 
 ---
 
