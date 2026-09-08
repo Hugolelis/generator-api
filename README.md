@@ -16,14 +16,24 @@
 
 ## Table of Contents
 
+- [About](#about)
 - [Features](#features)
-- [Installation](#installation)
+- [Tech Stack](#tech-stack)
+- [Architecture & Design Decisions](#architecture--design-decisions)
+- [Getting Started](#getting-started)
 - [Usage](#usage)
-- [Commands](#commands)
-- [Configuration](#configuration)
-- [Architecture](#architecture)
-- [Contributing](#contributing)
+- [API Reference](#api-reference)
+- [Rate Limiting](#rate-limiting)
 - [License](#license)
+- [Author](#author)
+
+---
+
+## About
+
+Development and QA workflows constantly need throwaway data — a valid CPF, a UUID, a random password that actually meets a policy, a set of dates for a fixture. Generator API centralizes that into a single, fast HTTP service instead of scattering ad-hoc scripts or pulling in multiple one-off npm packages across projects.
+
+It's built on Fastify + TypeScript for low overhead and end-to-end type safety, with Prisma/PostgreSQL backing the one stateful feature (URL shortening) so the rest of the API can stay fully stateless.
 
 ---
 
@@ -42,172 +52,18 @@
 
 ---
 
-## Installation
+## Tech Stack
 
-```bash
-# Clone the repository
-git clone https://github.com/Hugolelis/GeneratorAPI.git
-cd GeneratorAPI
-
-# Install dependencies
-npm install
-
-# Configure environment variables
-cp .env.example .env
-```
-
-### Configuration
-
-Edit the `.env` file:
-
-```env
-PORT=3000
-HOST=0.0.0.0
-DATABASE_URL="postgresql://postgres:<password>@localhost:5432/GeneratorAPI"
-```
-
-### Database Setup
-
-```bash
-# Run Prisma migrations
-npx prisma migrate dev --name init
-```
+- **Runtime:** Node.js 18+
+- **Language:** TypeScript 5.9
+- **Framework:** Fastify 5
+- **ORM:** Prisma
+- **Database:** PostgreSQL
+- **Docs:** Swagger UI
 
 ---
 
-## Usage
-
-### Start the server
-
-```bash
-npm run dev        # development with hot reload
-npm start          # production
-```
-
-Once running, the API is available at `http://localhost:3000` and the interactive documentation at `http://localhost:3000/docs`.
-
-### Generate a UUID
-
-```bash
-curl http://localhost:3000/api/uuid/generate
-```
-
-```json
-{ "UUID": "550e8400-e29b-41d4-a716-446655440000" }
-```
-
-### Generate a password
-
-```bash
-curl -X POST http://localhost:3000/api/password/generate \
-  -H "Content-Type: application/json" \
-  -d '{"qtdCaractere": 16, "upper": true, "lower": true, "number": true, "specCaractere": true}'
-```
-
-```json
-{ "password": "aB3#kL9$xR2&pQ7@" }
-```
-
-### Generate a CPF
-
-```bash
-curl http://localhost:3000/api/cpf/generate
-```
-
-```json
-{ "CPF": "123.456.789-09" }
-```
-
-### Shorten a URL
-
-```bash
-curl -X POST http://localhost:3000/api/short-url/generate \
-  -H "Content-Type: application/json" \
-  -d '{"URL": "https://example.com/long-url"}'
-```
-
-```json
-{
-  "URL": "https://example.com/long-url",
-  "shortUrldata": {
-    "shortCode": "abc123",
-    "shortUrl": "http://localhost:3000/api/short-url/abc123"
-  }
-}
-```
-
-### List all shortened URLs
-
-```bash
-curl "http://localhost:3000/api/short-url/all?page=1&limit=10"
-```
-
----
-
-## Commands
-
-### API Endpoints
-
-| Method | Endpoint | Description | Aliases |
-|---|---|---|---|
-| `GET` | `/api/uuid/generate` | Generate UUID | — |
-| `GET` | `/api/cpf/generate` | Generate CPF | — |
-| `POST` | `/api/cpf/validate` | Validate CPF | — |
-| `POST` | `/api/password/generate` | Generate password | — |
-| `GET` | `/api/sorted-number/generate` | Generate sorted numbers | — |
-| `POST` | `/api/date/generate` | Generate dates | — |
-| `POST` | `/api/short-url/generate` | Create shortened URL | — |
-| `GET` | `/api/short-url/all` | List all short URLs | — |
-| `GET` | `/api/short-url/:shortCode` | Redirect to original URL | — |
-| `GET` | `/api/verify/health` | Health check | — |
-| `GET` | `/api/verify/ping` | Ping | — |
-
-### Query / Body Parameters
-
-| Endpoint | Parameter | Type | Default | Description |
-|---|---|---|---|---|
-| `sorted-number` | `min` | integer | `1` | Minimum value |
-| | `max` | integer | `1` | Maximum value |
-| | `qtd` | integer | `1` | Quantity of numbers |
-| `date` | `start` | string | — | Start date (ISO) |
-| | `end` | string | — | End date (ISO) |
-| | `day` | integer (0-6) | — | Filter by day of week |
-| | `qtd` | integer | `1` | Number of dates |
-| `password` | `qtdCaractere` | integer (6-20) | `6` | Password length |
-| | `upper` | boolean | `true` | Include uppercase |
-| | `lower` | boolean | `true` | Include lowercase |
-| | `number` | boolean | `true` | Include numbers |
-| | `specCaractere` | boolean | `true` | Include special chars |
-| `cpf` `validate` | `CPF` | string | — | CPF to validate |
-| `short-url` `all` | `page` | integer | `1` | Page number |
-| | `limit` | integer | `10` | Items per page |
-
----
-
-## Configuration
-
-### Rate Limiting
-
-The API enforces a global rate limit of **40 requests per minute** per IP. When exceeded, the server responds with:
-
-```json
-{
-  "statusCode": 429,
-  "message": "Muitas requisições. Tente novamente em instantes."
-}
-```
-
-### Environment Variables
-
-| Variable | Default | Description |
-|---|---|---|
-| `PORT` | `3000` | Server port |
-| `HOST` | `0.0.0.0` | Server host |
-| `DATABASE_URL` | — | PostgreSQL connection string |
-
----
-
-## Architecture
+## Architecture & Design Decisions
 
 ```
 src/
@@ -241,10 +97,8 @@ src/
 ├── routes/                 # Route definitions by resource
 └── generated/
     └── prisma/             # Prisma client (auto-generated)
-
 prisma/
 └── schema.prisma           # Database schema (ShortenedUrl model)
-
 documentation/              # Swagger per-route schemas
 swagger.config.ts           # Swagger setup
 ```
@@ -257,20 +111,187 @@ The pipeline follows a clean separation of concerns:
 4. **Validators** — parameter validation before generation
 5. **Error Handler** — centralized exception handling
 
+**Why this shape:** generators have no knowledge of HTTP, so each one can be unit-tested and reused (e.g. a future CLI) without touching Fastify. Validation is split from generation so invalid input never reaches business logic. Fastify was chosen over Express for its lower request overhead and native TypeScript-friendly schema validation; Prisma was chosen for type-safe queries against the single stateful resource (short URLs) without hand-writing SQL.
+
+**Known limitations:**
+- No authentication/API-key layer yet — the API assumes a trusted network, not public internet exposure as-is.
+- Rate limiting is per-IP only; there's no per-client quota or API key tiering.
+- Short URL codes have no collision-retry documented here — worth confirming under load.
+
+<!-- Adjust the "Why this shape" and "Known limitations" bullets to match your actual reasoning — these are a starting draft based on the code structure. -->
+
 ---
 
-## Contributing
+## Getting Started
 
-Contributions are welcome! To get started:
+### Prerequisites
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/my-feature`)
-3. Commit your changes (`git commit -am 'Add my feature'`)
-4. Push to the branch (`git push origin feature/my-feature`)
-5. Open a Pull Request
+- Node.js 18+
+- npm
+- A running PostgreSQL instance
 
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/Hugolelis/GeneratorAPI.git
+cd GeneratorAPI
+
+# Install dependencies
+npm install
+
+# Configure environment variables
+cp .env.example .env
+```
+
+### Environment Variables
+
+Edit the `.env` file:
+
+```env
+PORT=3000
+HOST=0.0.0.0
+DATABASE_URL="postgresql://postgres:<password>@localhost:5432/GeneratorAPI"
+```
+
+| Variable | Default | Description |
+|---|---|---|
+| `PORT` | `3000` | Server port |
+| `HOST` | `0.0.0.0` | Server host |
+| `DATABASE_URL` | — | PostgreSQL connection string |
+
+### Database Setup
+
+```bash
+# Run Prisma migrations
+npx prisma migrate dev --name init
+```
+
+### Running locally
+
+```bash
+npm run dev        # development with hot reload
+npm start          # production
+```
+
+Once running, the API is available at `http://localhost:3000` and the interactive documentation at `http://localhost:3000/docs`.
+
+---
+
+## Usage
+
+### Generate a UUID
+
+```bash
+curl http://localhost:3000/api/uuid/generate
+```
+```json
+{ "UUID": "550e8400-e29b-41d4-a716-446655440000" }
+```
+
+### Generate a password
+
+```bash
+curl -X POST http://localhost:3000/api/password/generate \
+  -H "Content-Type: application/json" \
+  -d '{"qtdCaractere": 16, "upper": true, "lower": true, "number": true, "specCaractere": true}'
+```
+```json
+{ "password": "aB3#kL9$xR2&pQ7@" }
+```
+
+### Generate a CPF
+
+```bash
+curl http://localhost:3000/api/cpf/generate
+```
+```json
+{ "CPF": "123.456.789-09" }
+```
+
+### Shorten a URL
+
+```bash
+curl -X POST http://localhost:3000/api/short-url/generate \
+  -H "Content-Type: application/json" \
+  -d '{"URL": "https://example.com/long-url"}'
+```
+```json
+{
+  "URL": "https://example.com/long-url",
+  "shortUrldata": {
+    "shortCode": "abc123",
+    "shortUrl": "http://localhost:3000/api/short-url/abc123"
+  }
+}
+```
+
+### List all shortened URLs
+
+```bash
+curl "http://localhost:3000/api/short-url/all?page=1&limit=10"
+```
+
+---
+
+## API Reference
+
+### Endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/uuid/generate` | Generate UUID |
+| `GET` | `/api/cpf/generate` | Generate CPF |
+| `POST` | `/api/cpf/validate` | Validate CPF |
+| `POST` | `/api/password/generate` | Generate password |
+| `GET` | `/api/sorted-number/generate` | Generate sorted numbers |
+| `POST` | `/api/date/generate` | Generate dates |
+| `POST` | `/api/short-url/generate` | Create shortened URL |
+| `GET` | `/api/short-url/all` | List all short URLs |
+| `GET` | `/api/short-url/:shortCode` | Redirect to original URL |
+| `GET` | `/api/verify/health` | Health check |
+| `GET` | `/api/verify/ping` | Ping |
+
+### Query / Body Parameters
+
+| Endpoint | Parameter | Type | Default | Description |
+|---|---|---|---|---|
+| `sorted-number` | `min` | integer | `1` | Minimum value |
+| | `max` | integer | `1` | Maximum value |
+| | `qtd` | integer | `1` | Quantity of numbers |
+| `date` | `start` | string | — | Start date (ISO) |
+| | `end` | string | — | End date (ISO) |
+| | `day` | integer (0-6) | — | Filter by day of week |
+| | `qtd` | integer | `1` | Number of dates |
+| `password` | `qtdCaractere` | integer (6-20) | `6` | Password length |
+| | `upper` | boolean | `true` | Include uppercase |
+| | `lower` | boolean | `true` | Include lowercase |
+| | `number` | boolean | `true` | Include numbers |
+| | `specCaractere` | boolean | `true` | Include special chars |
+| `cpf` `validate` | `CPF` | string | — | CPF to validate |
+| `short-url` `all` | `page` | integer | `1` | Page number |
+| | `limit` | integer | `10` | Items per page |
+
+---
+
+## Rate Limiting
+
+The API enforces a global rate limit of **40 requests per minute** per IP. When exceeded, the server responds with:
+
+```json
+{
+  "statusCode": 429,
+  "message": "Muitas requisições. Tente novamente em instantes."
+}
+```
 ---
 
 ## License
 
 Distributed under the **MIT License**. See [LICENSE](LICENSE) for more information.
+
+---
+
+## Author
+
+**Hugo** — [GitHub](https://github.com/Hugolelis)
