@@ -14,7 +14,8 @@
 
 ---
 
-## Table of Contents
+<details>
+<summary><strong>Table of Contents</strong></summary>
 
 - [About](#about)
 - [Features](#features)
@@ -26,6 +27,8 @@
 - [Rate Limiting](#rate-limiting)
 - [License](#license)
 - [Author](#author)
+
+</details>
 
 ---
 
@@ -134,8 +137,8 @@ The pipeline follows a clean separation of concerns:
 
 ```bash
 # Clone the repository
-git clone https://github.com/Hugolelis/GeneratorAPI.git
-cd GeneratorAPI
+git clone https://github.com/Hugolelis/generator-api.git
+cd generator-api
 
 # Install dependencies
 npm install
