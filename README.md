@@ -34,7 +34,7 @@
 
 ## About
 
-Development and QA workflows constantly need throwaway data — a valid CPF, a UUID, a random password that actually meets a policy, a set of dates for a fixture. Generator API centralizes that into a single, fast HTTP service instead of scattering ad-hoc scripts or pulling in multiple one-off npm packages across projects.
+Development and QA workflows constantly need throwaway data: a valid CPF, a UUID, a random password that actually meets a policy, a set of dates for a fixture. Generator API centralizes that into a single, fast HTTP service instead of scattering ad-hoc scripts or pulling in multiple one-off npm packages across projects.
 
 It's built on Fastify + TypeScript for low overhead and end-to-end type safety, with Prisma/PostgreSQL backing the one stateful feature (URL shortening) so the rest of the API can stay fully stateless.
 
@@ -108,20 +108,20 @@ swagger.config.ts           # Swagger setup
 
 The pipeline follows a clean separation of concerns:
 
-1. **Routes** — register endpoints with validation schemas
-2. **Controllers** — extract request data, call validators and generators, send response
-3. **Generators** — pure business logic for data generation
-4. **Validators** — parameter validation before generation
-5. **Error Handler** — centralized exception handling
+1. **Routes**: register endpoints with validation schemas
+2. **Controllers**: extract request data, call validators and generators, send response
+3. **Generators**: pure business logic for data generation
+4. **Validators**: parameter validation before generation
+5. **Error Handler**: centralized exception handling
 
 **Why this shape:** generators have no knowledge of HTTP, so each one can be unit-tested and reused (e.g. a future CLI) without touching Fastify. Validation is split from generation so invalid input never reaches business logic. Fastify was chosen over Express for its lower request overhead and native TypeScript-friendly schema validation; Prisma was chosen for type-safe queries against the single stateful resource (short URLs) without hand-writing SQL.
 
 **Known limitations:**
-- No authentication/API-key layer yet — the API assumes a trusted network, not public internet exposure as-is.
+- No authentication/API-key layer yet: the API assumes a trusted network, not public internet exposure as-is.
 - Rate limiting is per-IP only; there's no per-client quota or API key tiering.
-- Short URL codes have no collision-retry documented here — worth confirming under load.
+- Short URL codes have no collision-retry documented here. Worth confirming under load.
 
-<!-- Adjust the "Why this shape" and "Known limitations" bullets to match your actual reasoning — these are a starting draft based on the code structure. -->
+<!-- Adjust the "Why this shape" and "Known limitations" bullets to match your actual reasoning, these are a starting draft based on the code structure. -->
 
 ---
 
@@ -161,7 +161,7 @@ DATABASE_URL="postgresql://postgres:<password>@localhost:5432/GeneratorAPI"
 |---|---|---|
 | `PORT` | `3000` | Server port |
 | `HOST` | `0.0.0.0` | Server host |
-| `DATABASE_URL` | — | PostgreSQL connection string |
+| `DATABASE_URL` | - | PostgreSQL connection string |
 
 ### Database Setup
 
@@ -262,16 +262,16 @@ curl "http://localhost:3000/api/short-url/all?page=1&limit=10"
 | `sorted-number` | `min` | integer | `1` | Minimum value |
 | | `max` | integer | `1` | Maximum value |
 | | `qtd` | integer | `1` | Quantity of numbers |
-| `date` | `start` | string | — | Start date (ISO) |
-| | `end` | string | — | End date (ISO) |
-| | `day` | integer (0-6) | — | Filter by day of week |
+| `date` | `start` | string | - | Start date (ISO) |
+| | `end` | string | - | End date (ISO) |
+| | `day` | integer (0-6) | - | Filter by day of week |
 | | `qtd` | integer | `1` | Number of dates |
 | `password` | `qtdCaractere` | integer (6-20) | `6` | Password length |
 | | `upper` | boolean | `true` | Include uppercase |
 | | `lower` | boolean | `true` | Include lowercase |
 | | `number` | boolean | `true` | Include numbers |
 | | `specCaractere` | boolean | `true` | Include special chars |
-| `cpf` `validate` | `CPF` | string | — | CPF to validate |
+| `cpf` `validate` | `CPF` | string | - | CPF to validate |
 | `short-url` `all` | `page` | integer | `1` | Page number |
 | | `limit` | integer | `10` | Items per page |
 
@@ -297,4 +297,4 @@ Distributed under the **MIT License**.
 
 ## Author
 
-**Hugo** — [GitHub](https://github.com/Hugolelis)
+[Hugolelis](https://github.com/Hugolelis)
