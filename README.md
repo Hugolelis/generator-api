@@ -3,9 +3,7 @@
 <div align="left">
 
 [![License](https://img.shields.io/badge/License-MIT-1a1a2e?style=for-the-badge&logoColor=white)](LICENSE)
-[![Node.js](https://img.shields.io/badge/Node.js-18+-1a1a2e?style=for-the-badge&logo=nodedotjs&logoColor=white)]()
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-1a1a2e?style=for-the-badge&logo=typescript&logoColor=white)]()
-[![Fastify](https://img.shields.io/badge/Fastify-5-1a1a2e?style=for-the-badge&logo=fastify&logoColor=white)]()
+[![Status](https://img.shields.io/badge/Status-Active-1a1a2e?style=for-the-badge&logoColor=white)]()
 [![Version](https://img.shields.io/badge/Version-1.0.0-1a1a2e?style=for-the-badge&logoColor=white)]()
 
 </div>
